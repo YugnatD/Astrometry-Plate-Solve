@@ -83,7 +83,7 @@ class PlateSolve:
         plt.plot(x_right,y_right, 'ro-', transform=ax.get_transform('world'))
 
 
-        # Affiche tous les object de messier :NGCCatalogue[7130].get_SkyCoord()
+        # Affiche tous les object de messier :
         for m in messierCatalogue:
             if util.is_in_image(capteur_centre, self.FOV_IMAGE, m.coordonne):
                 center = m.get_SkyCoord()
