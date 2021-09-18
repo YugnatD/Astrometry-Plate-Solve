@@ -82,7 +82,6 @@ class PlateSolve:
         plt.plot(x_left,y_left, 'ro-', transform=ax.get_transform('world'))
         plt.plot(x_right,y_right, 'ro-', transform=ax.get_transform('world'))
 
-
         # Affiche tous les object de messier :
         for m in messierCatalogue:
             if util.is_in_image(capteur_centre, self.FOV_IMAGE, m.coordonne):

@@ -95,7 +95,7 @@ def open_NGC_catalogue():
 def is_in_image(centre_image, radius, coordonne):
     #convertie le radius du fov en hms
     hms_tuple = centre_image.ra.hms
-    h_fov_radius = 5*24/180
+    h_fov_radius = radius*24/180
     h_fov_min = hms_tuple[0] - h_fov_radius -1
     h_fov_max = hms_tuple[0] + h_fov_radius + 1
     dec_fov_min = centre_image.dec.deg - radius - 1
