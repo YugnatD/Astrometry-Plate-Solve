@@ -60,6 +60,7 @@ class PlateSolve:
 
 
         #definit le champs de vision de l'image
+        plt.figure(figsize=(10, 10), dpi=160)
         ax = plt.axes(projection='astro zoom', center=str_centre, radius=str(self.FOV_IMAGE)+' deg', rotate='0 deg')
         ax.grid()
 
