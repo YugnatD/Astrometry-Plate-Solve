@@ -11,17 +11,16 @@ import ligo
 from matplotlib import pyplot as plt
 from ligo.skymap.plot.marker import reticle
 import lib.Catalogue_Util as util
+import PIL
 
 class PlateSolve:
-    def __init__(self, focale = 1000, photosyte = 4.8, percent = 20, width_capteur = 4928, height_capteur = 3264, fov = 5, star_size = 9, downscale = 2):
+    def __init__(self, focale = 1000, photosyte = 4.8, percent = 20, fov = 5, star_size = 9, downscale = 2):
         self.FOCALE = focale
         self.PHOTOSITE = photosyte
         self.angular_resolution = (206.265 * self.PHOTOSITE) / self.FOCALE
         self.low_scale_res = self.angular_resolution - ((self.angular_resolution / 100) * percent)
         self.high_scale_res = self.angular_resolution + ((self.angular_resolution / 100) * percent)
-        self.width_capteur = width_capteur
-        self.height_capteur = height_capteur
-        self.FOV_telescope_deg = self.width_capteur*self.angular_resolution / 3600
+
         self.FOV_IMAGE = fov #5 degree de champs
         self.STAR_SIZE = star_size # changer pour augmenter ou diminuer la taille des etoile
         self.DOWNSCALE = downscale
@@ -33,6 +32,12 @@ class PlateSolve:
             newFileName = image_path.split(".")[0]+".png"
             os.system("dcraw -c -w "+image_path +" | pnmtopng -compression 9 > "+newFileName)
             image_path = newFileName
+
+        image = PIL.Image.open(image_path)
+
+        self.width_capteur = image.size[0]
+        self.height_capteur = image.size[1]
+        self.FOV_telescope_deg = self.width_capteur*self.angular_resolution / 3600
 
 
         print("plate solve of : " + image_path)
